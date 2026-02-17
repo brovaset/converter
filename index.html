@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Converter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-96">
+    <h1 class="text-2xl font-bold mb-6 text-center">Unit Converter</h1>
+
+    <label class="block mb-2 font-medium">Enter Value</label>
+    <input id="inputValue" type="number" class="w-full border rounded-xl p-2 mb-4" placeholder="Enter number" />
+
+    <label class="block mb-2 font-medium">Conversion</label>
+    <select id="conversionType" class="w-full border rounded-xl p-2 mb-4">
+      <option value="kmToMi">Kilometers → Miles</option>
+      <option value="miToKm">Miles → Kilometers</option>
+    </select>
+
+    <button onclick="convert()" class="w-full bg-black text-white rounded-xl p-2 hover:opacity-80">Convert</button>
+
+    <div id="result" class="mt-6 text-center text-lg font-semibold"></div>
+  </div>
+
+  <script>
+    function convert() {
+      const value = parseFloat(document.getElementById('inputValue').value);
+      const type = document.getElementById('conversionType').value;
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(value)) {
+        resultDiv.innerText = 'Please enter a valid number';
+        return;
+      }
+
+      let result;
+      if (type === 'kmToMi') {
+        result = value * 0.621371;
+        resultDiv.innerText = `${value} km = ${result.toFixed(3)} miles`;
+      } else {
+        result = value / 0.621371;
+        resultDiv.innerText = `${value} miles = ${result.toFixed(3)} km`;
+      }
+    }
+  </script>
+</body>
+</html>
